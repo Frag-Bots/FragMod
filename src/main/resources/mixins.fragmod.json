@@ -1,0 +1,9 @@
+{
+    "compatibilityLevel": "JAVA_8",
+    "package": "xyz.fragbots.fragmod.mixins",
+    "refmap": "mixins.fragmod.refmap.json",
+    "mixins": [
+      "MixinMinecraft"
+    ],
+    "verbose": true
+}

@@ -1,0 +1,18 @@
+[
+    {
+        "modid": "fragmod",
+        "name": "FragBotsMod",
+        "description": "Mod for Fragrunning in Minecraft",
+        "version": "${version}",
+        "mcversion": "${mcversion}",
+        "url": "",
+        "updateUrl": "",
+        "authorList": [
+            "eznick"
+        ],
+        "credits": "",
+        "logoFile": "",
+        "screenshots": [],
+        "dependencies": []
+    }
+]
