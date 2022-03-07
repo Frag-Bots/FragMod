@@ -48,7 +48,7 @@ class PacketListener : ChannelDuplexHandler() {
     fun joinEvent(event: FMLNetworkEvent.ClientConnectedToServerEvent) {
         event.manager.channel().pipeline().addBefore(
             "packet_handler",
-            "examplemod_packet_handler",
+            "fragbots_packet_handler",
             PacketListener()
         )
     }
