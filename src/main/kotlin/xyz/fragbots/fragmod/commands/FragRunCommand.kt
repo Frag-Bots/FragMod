@@ -7,7 +7,7 @@ import gg.essential.universal.wrappers.message.UTextComponent
 import net.minecraft.event.ClickEvent
 import net.minecraft.event.HoverEvent
 import xyz.fragbots.fragmod.FragBots
-import xyz.fragbots.fragmod.util.APIUtil
+import xyz.fragbots.fragmod.util.ApiUtils
 
 class FragRunCommand : Command("fragrun") {
 
@@ -59,23 +59,23 @@ class FragRunCommand : Command("fragrun") {
     }
     @SubCommand(value = "debug")
     fun debug() {
-        FragBots.chat("user: ${APIUtil.user} bots: ${APIUtil.bots}", false)
+        FragBots.chat("user: ${ApiUtils.user} bots: ${ApiUtils.bots}", false)
     }
 
     fun partyBot(bot: String) {
         when (bot) {
             "verified1", "verified2" -> {
-                when (APIUtil.user?.verified) {
+                when (ApiUtils.user?.verified) {
                     false -> {
                         FragBots.chat(UTextComponent("&cYou must be verified to use this bot. Join our &r").appendSibling(UTextComponent("&d&ndiscord&r").setClick(ClickEvent.Action.OPEN_URL, "https://discord.gg/fragbots").setHover(HoverEvent.Action.SHOW_TEXT, "Click to join!")).appendSibling(UTextComponent("&c to verify!\"")))
                         return
                     }
                     true -> {
                         if (bot == "verified1") {
-                            FragBots.command("party ${APIUtil.bots!!.verified1}")
+                            FragBots.command("party ${ApiUtils.bots!!.verified1}")
                             return
                         } else {
-                            FragBots.command("party ${APIUtil.bots!!.verified2}")
+                            FragBots.command("party ${ApiUtils.bots!!.verified2}")
                             return
                         }
                     }
@@ -86,13 +86,13 @@ class FragRunCommand : Command("fragrun") {
                 }
             }
             "whitelisted" -> {
-                when (APIUtil.user?.whitelisted) {
+                when (ApiUtils.user?.whitelisted) {
                     false -> {
                         FragBots.chat(UTextComponent("&cYou must be whitelisted to use this bot. Join our &r").appendSibling(UTextComponent("&d&ndiscord&r").setClick(ClickEvent.Action.OPEN_URL, "https://discord.gg/fragbots").setHover(HoverEvent.Action.SHOW_TEXT, "Click to join!")).appendSibling(UTextComponent("&c and make a ticket to get whitelisted!")))
                         return
                     }
                     true -> {
-                        FragBots.command("party ${APIUtil.bots!!.whitelisted}")
+                        FragBots.command("party ${ApiUtils.bots!!.whitelisted}")
                         return
                     }
                     null -> {
@@ -102,13 +102,13 @@ class FragRunCommand : Command("fragrun") {
                 }
             }
             "active" -> {
-                when (APIUtil.user?.active) {
+                when (ApiUtils.user?.active) {
                     false -> {
                         FragBots.chat(UTextComponent("&cYou must be active in our &r").appendSibling(UTextComponent("&d&ndiscord&r").setClick(ClickEvent.Action.OPEN_URL, "https://discord.gg/fragbots").setHover(HoverEvent.Action.SHOW_TEXT, "Click to join!")).appendSibling(UTextComponent("&c server to use this bot!")))
                         return
                     }
                     true -> {
-                        FragBots.command("party ${APIUtil.bots!!.active}")
+                        FragBots.command("party ${ApiUtils.bots!!.active}")
                         return
                     }
                     null -> {
@@ -118,13 +118,13 @@ class FragRunCommand : Command("fragrun") {
                 }
             }
             "exclusive" -> {
-                when (APIUtil.user?.exclusive) {
+                when (ApiUtils.user?.exclusive) {
                     false -> {
                         FragBots.chat(UTextComponent("&cYou must have exclusive access. Join our &r").appendSibling(UTextComponent("&d&ndiscord&r").setClick(ClickEvent.Action.OPEN_URL, "https://discord.gg/fragbots").setHover(HoverEvent.Action.SHOW_TEXT, "Click to join!")).appendSibling(UTextComponent("&c for ways to get exclusive access!")))
                         return
                     }
                     true -> {
-                        FragBots.command("party ${APIUtil.bots!!.exclusive}")
+                        FragBots.command("party ${ApiUtils.bots!!.exclusive}")
                         return
                     }
                     null -> {

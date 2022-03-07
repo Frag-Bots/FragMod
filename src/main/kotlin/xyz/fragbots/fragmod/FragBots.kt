@@ -17,16 +17,19 @@ import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.common.gameevent.TickEvent
+import org.apache.http.conn.ssl.SSLContexts
 import org.lwjgl.input.Keyboard
 import xyz.fragbots.fragmod.commands.FR
 import xyz.fragbots.fragmod.commands.FragRunCommand
 import xyz.fragbots.fragmod.events.packet.PacketEvent
+import xyz.fragbots.fragmod.util.isValidCert
 import java.awt.Desktop
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.zip.GZIPInputStream
+import javax.net.ssl.HttpsURLConnection
 
 @Mod(
     modid = FragBots.MOD_ID,
@@ -104,7 +107,10 @@ class FragBots {
                         try {
                             val version = VERSION
                             val url = URL("https://api.fragbots.xyz/v2/mod/version")
-                            val conn = url.openConnection() as HttpURLConnection
+                            val conn = url.openConnection() as HttpsURLConnection
+                            // Thanks lily💕#0999 for this code
+                            val socketFactory = SSLContexts.custom().useProtocol("TLS").loadTrustMaterial(null, ::isValidCert).build().socketFactory
+                            conn.sslSocketFactory = socketFactory
                             conn.requestMethod = "GET"
                             conn.doOutput = true
                             conn.setRequestProperty("Accept-Encoding", "gzip")

@@ -4,7 +4,7 @@ import xyz.fragbots.fragmod.FragBots
 import gg.essential.vigilance.Vigilant
 import gg.essential.vigilance.data.Property
 import gg.essential.vigilance.data.PropertyType
-import xyz.fragbots.fragmod.util.APIUtil
+import xyz.fragbots.fragmod.util.ApiUtils
 
 import java.io.File
 
@@ -36,7 +36,7 @@ class Config : Vigilant(File(FragBots.configLocation)) {
     )
     fun onClick() {
         Thread {
-            APIUtil.fetchBots()
+            ApiUtils.fetchBots()
             FragBots.notify("Bot list refreshed.")
         }.start()
     }

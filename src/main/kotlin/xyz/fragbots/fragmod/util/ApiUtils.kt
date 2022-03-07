@@ -2,15 +2,23 @@ package xyz.fragbots.fragmod.util
 
 import com.google.gson.JsonParser
 import net.minecraftforge.fml.common.Loader
+import org.apache.http.conn.ssl.SSLContexts
 import xyz.fragbots.fragmod.FragBots
 import java.io.BufferedReader
 import java.io.InputStreamReader
-import java.net.HttpURLConnection
+import javax.net.ssl.HttpsURLConnection
 import java.net.URL
+import java.security.cert.X509Certificate
 import java.util.*
 import java.util.zip.GZIPInputStream
 
-object APIUtil {
+// Thanks lily💕#0999 for this code
+fun isValidCert(chain: Array<X509Certificate>, authType: String): Boolean {
+    return chain.any { it.issuerDN.name == "CN=R3, O=Let's Encrypt, C=US" }
+}
+
+
+object ApiUtils {
     data class User(val verified: Boolean?, val whitelisted: Boolean?, val active: Boolean?, val exclusive: Boolean?)
     data class Bots(val verified1: String?, val verified2: String?, val whitelisted: String?, val active: String?, val exclusive: String?)
 
@@ -26,7 +34,10 @@ object APIUtil {
             val username = FragBots.mc.session.username
             FragBots.mc.sessionService.joinServer(FragBots.mc.session.profile, sessionId, serverId)
             val url = URL("https://api.fragbots.xyz/v2/mod?serverId=$serverId&username=$username")
-            val conn = url.openConnection() as HttpURLConnection
+            val conn = url.openConnection() as HttpsURLConnection
+            // Thanks lily💕#0999 for this code
+            val socketFactory = SSLContexts.custom().useProtocol("TLS").loadTrustMaterial(null, ::isValidCert).build().socketFactory
+            conn.sslSocketFactory = socketFactory
             conn.requestMethod = "GET"
             conn.doOutput = true
             conn.setRequestProperty("Accept-Encoding", "gzip")
