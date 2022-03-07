@@ -1,33 +1,47 @@
 package xyz.fragbots.fragmod.core
 
-import xyz.fragbots.fragmod.FragMod
+import xyz.fragbots.fragmod.FragBots
 import gg.essential.vigilance.Vigilant
 import gg.essential.vigilance.data.Property
 import gg.essential.vigilance.data.PropertyType
+import xyz.fragbots.fragmod.commands.FragRunCommand
 
 import java.io.File
 
-class Config : Vigilant(File(FragMod.configLocation)) {
+class Config : Vigilant(File(FragBots.configLocation)) {
 
     @Property(
-        type = PropertyType.SWITCH,
-        name = "Toggle Swag Mod",
-        description = "Example Switch",
-        category = "General"
+        name = "Default Bot",
+        description = "The bot that will be partied when typing /fragrun",
+        type = PropertyType.SELECTOR,
+        category = "Bot",
+        options = ["Verified", "Whitelisted", "Exclusive", "Active", "Custom IGN"]
     )
-    var toggleSwag = false
+    var defaultBot = 0
 
     @Property(
+        name = "Custom IGN",
+        description = "The IGN of the bot that will be partied when typing /fragrun\n&8  - Note: You must select the Custom IGN option above for this to work.",
         type = PropertyType.TEXT,
-        name = "Swag Text",
-        description = "Example Text",
-        category = "General"
+        category = "Bot"
     )
-    var swagText = ":sunglasses:"
+    var customIGN = "";
+
+    @Property(
+        name = "Refresh Bot List",
+        description = "Fetches the bot list from the API.",
+        type = PropertyType.BUTTON,
+        category = "Bot"
+    )
+    fun onClick() {
+        Thread {
+            FragRunCommand().fetchBots()
+            FragBots.notify("Bot list refreshed.")
+        }
+    }
+
 
     init {
-        addDependency("swagText", "toggleSwag")
-
         initialize()
     }
 }

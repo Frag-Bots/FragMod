@@ -1,14 +1,14 @@
 package xyz.fragbots.fragmod.commands
 
-import xyz.fragbots.fragmod.FragMod
+import xyz.fragbots.fragmod.FragBots
 import gg.essential.api.EssentialAPI
 import gg.essential.api.commands.Command
 import gg.essential.api.commands.DefaultHandler
 
-class ConfigCommand : Command("examplemod") {
+class ConfigCommand : Command("fragbots") {
 
     @DefaultHandler
     fun handle() {
-        EssentialAPI.getGuiUtil().openScreen(FragMod.config?.gui())
+        EssentialAPI.getGuiUtil().openScreen(FragBots.config.gui())
     }
 }
