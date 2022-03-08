@@ -44,7 +44,7 @@ class FragBots {
     companion object {
         const val MOD_ID = "fragbots"
         const val MOD_NAME = "FragBots"
-        const val VERSION = "1.0"
+        const val VERSION = "1.1"
         const val configLocation = "./config/fragbots.toml"
 
         val mc: Minecraft = Minecraft.getMinecraft()
