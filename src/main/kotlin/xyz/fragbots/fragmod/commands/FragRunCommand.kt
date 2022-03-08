@@ -1,5 +1,6 @@
 package xyz.fragbots.fragmod.commands
 
+import gg.essential.api.EssentialAPI
 import gg.essential.api.commands.Command
 import gg.essential.api.commands.DefaultHandler
 import gg.essential.api.commands.SubCommand
@@ -57,6 +58,12 @@ class FragRunCommand : Command("fragrun") {
     fun exclusive() {
         partyBot("exclusive")
     }
+
+    @SubCommand(value = "config", aliases = ["cfg"])
+    fun config() {
+        EssentialAPI.getGuiUtil().openScreen(FragBots.config.gui())
+    }
+
     @SubCommand(value = "debug")
     fun debug() {
         FragBots.chat("user: ${ApiUtils.user} bots: ${ApiUtils.bots}", false)

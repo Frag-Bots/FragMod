@@ -31,6 +31,11 @@ class FR : Command("fr") {
         parent.exclusive()
     }
 
+    @SubCommand(value = "config", aliases = ["cfg"])
+    fun config() {
+        parent.config()
+    }
+
     @SubCommand(value = "debug")
     fun debug() {
         parent.debug()

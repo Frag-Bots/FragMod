@@ -22,6 +22,7 @@ import org.lwjgl.input.Keyboard
 import xyz.fragbots.fragmod.commands.FR
 import xyz.fragbots.fragmod.commands.FragRunCommand
 import xyz.fragbots.fragmod.events.packet.PacketEvent
+import xyz.fragbots.fragmod.util.ApiUtils
 import xyz.fragbots.fragmod.util.isValidCert
 import java.awt.Desktop
 import java.io.BufferedReader
@@ -48,11 +49,8 @@ class FragBots {
 
         val mc: Minecraft = Minecraft.getMinecraft()
         var config: Config = Config()
-
         val fragrunBind = KeyBinding("Frag Run", Keyboard.KEY_NONE, "Frag Bots")
-
         var checkedUpdate = false
-
         val PREFIX = "&8[&cFrag Bots&8]&r "
 
         fun chat(message: String, prefix: Boolean = true) {
@@ -79,6 +77,7 @@ class FragBots {
 
     @Mod.EventHandler
     fun init(event: FMLInitializationEvent) {
+        ApiUtils
         config.preload()
         ConfigCommand().register()
         FragRunCommand().register()
