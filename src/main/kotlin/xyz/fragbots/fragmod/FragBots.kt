@@ -20,7 +20,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.common.gameevent.TickEvent
 import org.apache.http.conn.ssl.SSLContexts
 import org.lwjgl.input.Keyboard
-import xyz.fragbots.fragmod.commands.FR
 import xyz.fragbots.fragmod.commands.FragRunCommand
 import xyz.fragbots.fragmod.events.packet.PacketEvent
 import xyz.fragbots.fragmod.util.ApiUtils
@@ -81,7 +80,6 @@ class FragBots {
         config.preload()
         ConfigCommand().register()
         FragRunCommand().register()
-        FR().register()
 
         ClientRegistry.registerKeyBinding(fragrunBind)
         MinecraftForge.EVENT_BUS.register(this)

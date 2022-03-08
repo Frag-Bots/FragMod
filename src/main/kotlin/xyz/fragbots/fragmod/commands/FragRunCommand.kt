@@ -12,6 +12,8 @@ import xyz.fragbots.fragmod.util.ApiUtils
 
 class FragRunCommand : Command("fragrun") {
 
+    override val commandAliases = setOf(Alias("fr"))
+
     @DefaultHandler
     fun handle() {
         when (FragBots.config.defaultBot) {
