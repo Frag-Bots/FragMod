@@ -15,6 +15,7 @@ import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.fml.client.registry.ClientRegistry
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.common.gameevent.TickEvent
 import org.apache.http.conn.ssl.SSLContexts
@@ -77,7 +78,6 @@ class FragBots {
 
     @Mod.EventHandler
     fun init(event: FMLInitializationEvent) {
-        ApiUtils
         config.preload()
         ConfigCommand().register()
         FragRunCommand().register()
@@ -86,6 +86,11 @@ class FragBots {
         ClientRegistry.registerKeyBinding(fragrunBind)
         MinecraftForge.EVENT_BUS.register(this)
         MinecraftForge.EVENT_BUS.register(PacketListener())
+    }
+
+    @Mod.EventHandler
+    fun postInit(event: FMLPostInitializationEvent) {
+        ApiUtils
     }
 
     @SubscribeEvent

@@ -1,6 +1,10 @@
 # Frag Bot Mod
 Quality of Life SkyBlock mod that makes partying frag bots much easier
 
+![config](https://i.imgur.com/GxmbqSs.png)
+_Config GUI that can be opened with /fragbots or /fr config_
+
+
 Discord Server: https://discord.gg/fragbots
 Join the discord to gain access to premium bots and more!
 
@@ -11,7 +15,7 @@ Join the discord to gain access to premium bots and more!
    - Whitelisted bot: /fragrun [whitelisted/whitelist/wl] (alias: /fr)
    - Discord Active bot: /fragrun [active/ac] (alias: /fr)
    - Exclusive bot: /fragrun [exclusive/ex] (alias: /fr)
-- Show config: /fragbots
+- Show config GUI: /fragbots (aliases: /fragrun [config/cfg], /fr [config/cfg])
 
 ## Notes
 - Commands may not work because all bots are offline and/or have been banned.
