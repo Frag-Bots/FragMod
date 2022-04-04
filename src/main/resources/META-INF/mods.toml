@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion="[39,)"
+license="MIT"
+[[mods]]
+modId="fragmod"
+version="${file.jarVersion}"
+displayName="FragMod"
+logoFile="examplemod.png"
+credits=""
+authors="nick"
+description='''
+Quality of Life SkyBlock mod that makes partying frag bots much easier
+'''
+
+[[dependencies.fragmod]] 
+    modId="forge"
+    mandatory=true
+    versionRange="[39,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.fragmod]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.18.1,1.19)"
+    ordering="NONE"
+    side="BOTH"
